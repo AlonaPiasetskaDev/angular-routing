@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-profiles-list',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilesListComponent implements OnInit {
 
-  constructor() { }
+
+  constructor(private httpClient: HttpClient) { }
+  profiles: any = [];
+  public url = '/src/app/data/profiles.json';
+  // public profileUrl = '../../../../data/profiles.json';
 
   ngOnInit(): void {
+    this.httpClient.get(this.url).subscribe(data => {
+      this.profiles = data;
+      console.log('this.profiles', this.profiles);
+    })
+  }
+
+  getProfiles = () => {
+
   }
 
 }

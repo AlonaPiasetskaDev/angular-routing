@@ -1,1 +1,9 @@
-<p>profiles-list works!</p>
+<!-- <p>profiles-list works!</p> -->
+<div class="container">
+  <ng-container *ngIf="profiles.length !==0" >
+    <div *ngFor="let profile of profiles">
+      {{profile.name}}
+    </div>
+  </ng-container>
+</div>
+

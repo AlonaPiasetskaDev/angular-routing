@@ -1,0 +1,36 @@
+[{
+      "id": 0,
+      "name": "Imogene Griffin",
+      "username": "user-Deann",
+      "role": "user"
+    },
+    {
+      "id": 1,
+      "name": "Lenore Scott",
+      "username": "user-Suzanne",
+      "role": "user"
+    },
+    {
+      "id": 2,
+      "name": "Bridges Lott",
+      "username": "user-Ina",
+      "role": "user"
+    },
+    {
+      "id": 3,
+      "name": "Meyers Estrada",
+      "username": "user-Patton",
+      "role": "user"
+    },
+    {
+      "id": 4,
+      "name": "Simone Figueroa",
+      "username": "user-Daphne",
+      "role": "admin"
+    },
+    {
+      "id": 5,
+      "name": "Horne Mays",
+      "username": "user-Vera",
+      "role": "user"
+}]
