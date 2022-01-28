@@ -1,5 +1,8 @@
+import { Subscription } from 'rxjs';
+import { ProfilesService } from './../../service/profiles.service';
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+// import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-profiles-list',
@@ -9,19 +12,14 @@ import { HttpClient } from '@angular/common/http';
 export class ProfilesListComponent implements OnInit {
 
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private activatedRoute: ActivatedRoute, private ps: ProfilesService) { }
   profiles: any = [];
-  public url = 'assets/data/profiles.json';
 
   ngOnInit(): void {
-    this.httpClient.get(this.url).subscribe(data => {
+    console.log(this.activatedRoute.snapshot);
+    this.ps.getProfiles().subscribe((data) => {
+      console.log(data);
       this.profiles = data;
-      console.log('this.profiles', this.profiles);
-    })
+    });
   }
-
-  getProfiles = () => {
-
-  }
-
 }

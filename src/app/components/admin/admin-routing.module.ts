@@ -1,8 +1,8 @@
-import { AdminComponent } from './admin.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { ProfilesListComponent } from './children/profiles-list/profiles-list.component';
-import { PageNotFoundComponent } from '../page-not-found/page-not-found.component';
+import { ProfileComponent } from './children/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -13,6 +13,10 @@ const routes: Routes = [
   {
     path: 'profiles-list',
     component: ProfilesListComponent
+  },
+  {
+    path: 'profile/:id',
+    component: ProfileComponent
   }
 ];
 
