@@ -8,12 +8,14 @@ import { IProfile } from './profile.interface';
 export class ProfilesService {
 
   constructor (private http:  HttpClient) {}
-  // private profiles: BehaviorSubject<IProfile[]> = new BehaviorSubject<IProfile[]>([]);
-  private profiles: BehaviorSubject<IProfile[]> = new BehaviorSubject<IProfile[]>([]);
   public url = 'assets/data/profiles.json';
 
 
   getProfiles(): Observable<IProfile[]> {
     return this.http.get<IProfile[]>(`http://localhost:4200/${this.url}`);
+  }
+
+  getProfile(id: number): Observable<IProfile> {
+    return this.http.get<IProfile>(`http://localhost:4200/${this.url}`);
   }
 }
