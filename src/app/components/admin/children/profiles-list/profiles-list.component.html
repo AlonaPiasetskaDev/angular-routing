@@ -1,8 +1,19 @@
 <!-- <p>profiles-list works!</p> -->
 <div class="container">
+  <nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1">Profile list</span>
+    </div>
+  </nav>
   <ng-container *ngIf="profiles.length !==0" >
     <div *ngFor="let profile of profiles">
-      {{profile.name}}
+      <div class="card text-white bg-success">
+        <div class="card-body">
+          <h5 class="card-title">{{profile.name}}</h5>
+          <h6 class="card-subtitle mb-2 ">{{profile.username}}</h6>
+          <p class="card-text">{{profile.role}}</p>
+        </div>
+      </div>
     </div>
   </ng-container>
 </div>

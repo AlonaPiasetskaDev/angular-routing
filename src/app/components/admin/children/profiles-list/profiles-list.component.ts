@@ -11,8 +11,7 @@ export class ProfilesListComponent implements OnInit {
 
   constructor(private httpClient: HttpClient) { }
   profiles: any = [];
-  public url = '/src/app/data/profiles.json';
-  // public profileUrl = '../../../../data/profiles.json';
+  public url = 'assets/data/profiles.json';
 
   ngOnInit(): void {
     this.httpClient.get(this.url).subscribe(data => {

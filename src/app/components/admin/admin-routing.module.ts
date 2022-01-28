@@ -7,19 +7,12 @@ import { PageNotFoundComponent } from '../page-not-found/page-not-found.componen
 const routes: Routes = [
   {
     path: '',
-    component: AdminComponent
+    pathMatch: '',
+    redirectTo: 'profiles-list'
   },
   {
     path: 'profiles-list',
     component: ProfilesListComponent
-  },
-  {
-    path: '404',
-    component: PageNotFoundComponent
-  },
-  {
-    path: '**',
-    redirectTo: '/404'
   }
 ];
 
@@ -27,4 +20,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AdminRoutingModule { }

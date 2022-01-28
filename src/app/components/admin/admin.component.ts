@@ -14,7 +14,7 @@ export class AdminComponent implements OnInit {
   }
 
   goToPage(pageName: string){
-    this.router.navigate([`${pageName}`]);
+    this.router.navigate([`admin/${pageName}`]);
   }
 
 }

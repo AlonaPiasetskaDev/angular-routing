@@ -19,7 +19,7 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    component: AdminComponent,
+    loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule),
     canActivate: [AdminGuard]
   },
   {
@@ -27,12 +27,8 @@ const routes: Routes = [
     component: ProfileComponent
   },
   {
-    path: '404',
-    component: PageNotFoundComponent
-  },
-  {
     path: '**',
-    redirectTo: '/404'
+    component: PageNotFoundComponent
   },
 
 ];
