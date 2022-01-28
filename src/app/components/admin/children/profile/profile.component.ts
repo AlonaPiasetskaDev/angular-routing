@@ -1,6 +1,8 @@
+import { IProfile } from './../../service/profile.interface';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription, switchMap } from 'rxjs';
+import { Observable, Subscription, switchMap } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { ProfilesService } from './../../service/profiles.service';
 
@@ -10,19 +12,16 @@ import { ProfilesService } from './../../service/profiles.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit{
-
-  id: number | undefined;
-  constructor(private route: ActivatedRoute, private ps: ProfilesService) {}
-
+  id: string;
+  constructor(private route: ActivatedRoute, private ps: ProfilesService) {
+    this.id = this.route.snapshot.params['id'];
+  }
+  profile: any;
   ngOnInit(): void {
-    this.ps.getProfile(this.route.snapshot.params['id']).subscribe(data => {
-      console.log('ProfileComponent',data);
-
+    this.ps.getProfile(this.id).subscribe((data: any) => {
+      console.log('Profile component',this.id);
+      this.profile = data[this.id]
     })
-      // this.route.paramMap.pipe(
-      //   switchMap(params => params.getAll('id'))
-      // )
-      // .subscribe(data => this.id = +data);
   }
 
 
