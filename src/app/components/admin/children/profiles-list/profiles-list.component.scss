@@ -3,5 +3,13 @@
 
   .card {
     margin: 15px auto;
+
+    a {
+      float: right;
+    }
+
+    .card-link {
+      color: white;
+    }
   }
 }

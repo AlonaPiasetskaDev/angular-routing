@@ -2,16 +2,30 @@
   <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
       <span class="navbar-brand mb-0 h1">Profile list</span>
+      <button class="btn btn-success" (click)="openAddProfileModal()">+</button>
     </div>
   </nav>
   <ng-container *ngIf="profiles.length !==0" >
     <div *ngFor="let profile of profiles">
-      <div class="card text-white bg-success" [routerLink]="['/admin/profile', profile.id]">
+      <div class="card text-white bg-success" >
+        <ng-template [ngIf]="isEditing" [ngIfElse]="noEdit" >
+          <div class="card-body">
+            <input type="text" placeholder={{profile.name}}>
+            <input type="text"  placeholder={{profile.username}}>
+            <p class="card-text">{{profile.role}}</p>
+            <button (click)="saveChanges()" class="btn btn-light">save</button>
+          </div>
+        </ng-template>
+        <ng-template #noEdit>
         <div class="card-body">
           <h5 class="card-title">{{profile.name}}</h5>
           <h6 class="card-subtitle mb-2 ">{{profile.username}}</h6>
           <p class="card-text">{{profile.role}}</p>
+          <a [routerLink]="['/admin/profile', profile.id]" class="card-link">To Profile</a>
+          <button (click)="editProfile($event)" class="btn btn-light">edit</button>
+
         </div>
+      </ng-template>
       </div>
     </div>
   </ng-container>
