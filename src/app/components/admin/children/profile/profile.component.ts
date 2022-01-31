@@ -1,4 +1,4 @@
-import { IProfile } from './../../service/profile.interface';
+import { IProfile } from '../../../../interfaces/profile.interface';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription, switchMap } from 'rxjs';

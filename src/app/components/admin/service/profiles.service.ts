@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { IProfile } from './profile.interface';
+import { IProfile } from '../../../interfaces/profile.interface';
 
 
 @Injectable({providedIn: 'root'})

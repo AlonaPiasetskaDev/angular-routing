@@ -9,6 +9,10 @@ import { ProfileComponent } from './components/admin/children/profile/profile.co
 import { AdminComponent } from './components/admin/admin.component';
 import { ProfilesListComponent } from './components/admin/children/profiles-list/profiles-list.component';
 import { LoginComponent } from './components/login/login.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+import { profileReducer } from './reducers/profile.reducer';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,8 +24,12 @@ import { LoginComponent } from './components/login/login.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot({
+      profiles: profileReducer
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

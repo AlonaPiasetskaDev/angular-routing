@@ -1,8 +1,7 @@
 import { Subscription } from 'rxjs';
 import { ProfilesService } from './../../service/profiles.service';
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
-// import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-profiles-list',
@@ -11,11 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilesListComponent implements OnInit {
 
-
+  @Output() toggleModal: boolean = false;
   constructor(private activatedRoute: ActivatedRoute, private ps: ProfilesService) { }
   profiles: any = [];
-  name: string;
-  username: string;
+  // name: string;
+  // username: string;
 
   isEditing = false;
 

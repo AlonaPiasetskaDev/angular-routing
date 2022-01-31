@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { IState } from 'src/app/reducers/profile.reducer';
 
 @Component({
   selector: 'app-add-profile',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddProfileComponent implements OnInit {
 
-  constructor() { }
+  constructor(private store: Store<IState>) { }
 
   ngOnInit(): void {
   }
+
+  @Input() toggle: boolean = false;
 
 }
