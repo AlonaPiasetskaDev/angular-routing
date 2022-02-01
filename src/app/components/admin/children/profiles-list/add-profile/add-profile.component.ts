@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { IState } from 'src/app/reducers/profile.reducer';
+import { IState } from 'src/app/reducers';
 
 @Component({
   selector: 'app-add-profile',

@@ -1,10 +1,9 @@
-import { IProfile } from '../../../../interfaces/profile.interface';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription, switchMap } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { ProfilesService } from './../../service/profiles.service';
+import { ProfilesService } from '../../services/profiles.service';
 
 @Component({
   selector: 'app-profile',

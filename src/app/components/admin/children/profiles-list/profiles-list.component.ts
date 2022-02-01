@@ -1,5 +1,5 @@
 import { Subscription } from 'rxjs';
-import { ProfilesService } from './../../service/profiles.service';
+import { ProfilesService } from '../../services/profiles.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, Output } from '@angular/core';
 
@@ -34,7 +34,7 @@ export class ProfilesListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.ps.getProfiles().subscribe((data) => {
+    this.ps.getProfiles().subscribe((data: any) => {
       this.profiles = data;
     });
   }

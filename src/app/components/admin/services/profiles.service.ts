@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { IProfile } from '../../../interfaces/profile.interface';
+import { IProfile } from '../children/profile/profile.interface';
 
 
 @Injectable({providedIn: 'root'})
@@ -22,11 +22,4 @@ export class ProfilesService {
       })
     }))
   }
-
-  // {
-  //   let profiles = this.getProfiles();
-  //   let profile = Array(profiles).find(profile => profile.['id'] === id);
-  //   // return this.http.get<IProfile>(`http://localhost:4200/${this.url}`);
-  //   return profile;
-  // }
 }

@@ -6,10 +6,10 @@ import {
   MetaReducer
 } from '@ngrx/store';
 import { environment } from '../../environments/environment';
-import { IProfileState, profileNode, profileReducer } from './profile.reducer';
+import { IProfileState, profileNode, profileReducer } from './profile/profile.reducer';
 
 export interface IState {
-[profileNode] : IProfileState
+  [profileNode]: IProfileState
 }
 
 export const reducers: ActionReducerMap<IState> = {
