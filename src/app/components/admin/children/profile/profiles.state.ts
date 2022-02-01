@@ -1,13 +1,13 @@
 import { IProfile } from './profile.interface';
 
-export interface ProfileListState {
+export interface IProfileListState {
   Loading: boolean;
   Loaded: boolean;
   ProfileList: IProfile[];
 }
 
 
-export const initializeState = (): ProfileListState => {
+export const initializeState = (): IProfileListState => {
   return ({
     ProfileList: [],
     Loading: false,

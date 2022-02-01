@@ -1,7 +1,6 @@
 import { Action } from '@ngrx/store';
 
 import { IProfile } from '../../components/admin/children/profile/profile.interface';
-import ActionWithPayload from './actionWithPayload';
 
 export enum profileActionsTypes {
   CREATE_PROFILE = '[PROFILE] Create profile',
@@ -9,11 +8,9 @@ export enum profileActionsTypes {
   DELETE_PROFILE = '[PROFILE] Delete profile',
 }
 
-export class CreateProfile implements ActionWithPayload<IProfile> {
+export class CreateProfile implements Action {
   readonly type = profileActionsTypes.CREATE_PROFILE;
-  constructor(public payload: IProfile) {
-    this.payload = payload;
-  }
+  constructor(public payload: IProfile) {}
 }
 
 export class UpdateProfile implements Action {

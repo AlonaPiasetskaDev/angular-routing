@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -10,11 +11,10 @@ import { AdminComponent } from './components/admin/admin.component';
 import { ProfilesListComponent } from './components/admin/children/profiles-list/profiles-list.component';
 import { LoginComponent } from './components/login/login.component';
 import { MetaReducer, StoreModule } from '@ngrx/store';
-import { reducers } from './reducers';
+import { reducers, metaReducers } from './reducers';
 import { FormsModule } from '@angular/forms';
 import { profileReducer } from './reducers/profile/profile.reducer';
-
-// const metaReducers: Array<MetaReducer<any,any>> = [localStorageSyncReducer]
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,14 @@ import { profileReducer } from './reducers/profile/profile.reducer';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot({profileList: profileReducer}),
+    StoreModule.forRoot(reducers, {
+      metaReducers,
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true
+      }
+    }),
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
   ],
   providers: [],
   bootstrap: [AppComponent]
