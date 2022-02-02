@@ -10,8 +10,8 @@
       <div class="card text-white bg-success" id={{profile.id}}>
         <ng-template [ngIf]="isEdit === profile.id" [ngIfElse]="noEdit" >
           <div class="card-body">
-            <input type="text" value={{profile.name}}>
-            <input type="text"  value={{profile.username}}>
+            <input type="text" [(ngModel)]="name" value={{profile.name}} (blur)="updateName()">
+            <input type="text"  [(ngModel)]="username" value={{profile.username}} (blur)="updateName()">
             <p class="card-text">Role: {{profile.role}}</p>
             <button (click)="saveChanges(profile.id)" class="btn btn-light">save</button>
           </div>

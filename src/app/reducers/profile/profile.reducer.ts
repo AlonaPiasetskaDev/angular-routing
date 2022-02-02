@@ -19,9 +19,7 @@ export function profileReducer(state: IProfileListState = initialState, action: 
         ...state,
         profileList: [
             ...state.profileList,
-            // ...action.payload
         ]
-
       }
     default:
       return state;
