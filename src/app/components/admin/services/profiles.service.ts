@@ -4,10 +4,10 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { IProfile } from '../children/profile/profile.interface';
 
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class ProfilesService {
 
-  constructor (private http:  HttpClient) {}
+  constructor(private http: HttpClient) { }
   public url = 'assets/data/profiles.json';
 
 
@@ -15,7 +15,7 @@ export class ProfilesService {
     return this.http.get<IProfile[]>(`http://localhost:4200/${this.url}`);
   }
 
-  getProfile(id: string): Observable<any>{
+  getProfile(id: number): Observable<any> {
     return this.getProfiles().pipe(tap(result => {
       result.filter(profile => {
         profile.id === id;

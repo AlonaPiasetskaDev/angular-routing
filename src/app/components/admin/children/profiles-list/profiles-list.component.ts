@@ -5,34 +5,41 @@ import { ProfilesService } from '../../services/profiles.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, Output } from '@angular/core';
 import { IProfile } from '../profile/profile.interface';
+import { ProfilesStore } from './profiles.store';
 import { ERole } from 'src/app/enums/role.enums';
 
 @Component({
   selector: 'app-profiles-list',
   templateUrl: './profiles-list.component.html',
-  styleUrls: ['./profiles-list.component.scss']
+  styleUrls: ['./profiles-list.component.scss'],
+  providers: [ProfilesStore],
 })
 export class ProfilesListComponent implements OnInit {
 
+  // readonly profiles$ = this.componentStore.profiles$.pipe(
+  //   map(profiles => profiles),
+  // );
+
   @Output() toggleModal: boolean = false;
   constructor(private activatedRoute: ActivatedRoute, private ps: ProfilesService, private store: Store<{profiles: IProfile[]}>) { }
+
   profiles: any = [];
   $profiles: Observable<IProfile[]> = this.store.select(state => state.profiles);
 
   isEditing = false;
 
-  openAddProfileModal(){
+  openAddProfileModal() {
     console.log("add profile")
   }
 
-  editProfile($event: Event){
+  editProfile($event: Event) {
     this.isEditing = true;
     $event.stopPropagation();
     console.log('edit profile');
 
   }
 
-  saveChanges(){
+  saveChanges() {
     console.log('saved!')
   }
 
@@ -48,6 +55,9 @@ export class ProfilesListComponent implements OnInit {
       this.$profiles = data;
       this.profiles = this.$profiles;
       console.log('this.profiles', this.profiles)
+
     });
+
+
   }
 }
