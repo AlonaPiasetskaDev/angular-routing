@@ -5,16 +5,21 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MetaReducer, StoreModule } from '@ngrx/store';
+import { FormsModule } from '@angular/forms';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
 
 import { ProfileComponent } from './components/admin/children/profile/profile.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { ProfilesListComponent } from './components/admin/children/profiles-list/profiles-list.component';
 import { LoginComponent } from './components/login/login.component';
-import { MetaReducer, StoreModule } from '@ngrx/store';
+
 import { reducers, metaReducers } from './reducers';
-import { FormsModule } from '@angular/forms';
+
 import { profileReducer } from './reducers/profile/profile.reducer';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { ProfileEffects } from './components/admin/children/profile/profile.effects';
+
 
 @NgModule({
   declarations: [
@@ -37,6 +42,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
       }
     }),
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+    EffectsModule.forRoot([ProfileEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent]
