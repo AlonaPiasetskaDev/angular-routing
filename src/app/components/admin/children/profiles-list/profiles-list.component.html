@@ -8,12 +8,12 @@
   <ng-container *ngIf="profiles.length !==0" >
     <div *ngFor="let profile of profiles">
       <div class="card text-white bg-success" id={{profile.id}}>
-        <ng-template [ngIf]="isEditing" [ngIfElse]="noEdit" >
+        <ng-template [ngIf]="isEdit === profile.id" [ngIfElse]="noEdit" >
           <div class="card-body">
             <input type="text" value={{profile.name}}>
             <input type="text"  value={{profile.username}}>
             <p class="card-text">Role: {{profile.role}}</p>
-            <button (click)="saveChanges()" class="btn btn-light">save</button>
+            <button (click)="saveChanges(profile.id)" class="btn btn-light">save</button>
           </div>
         </ng-template>
         <ng-template #noEdit>

@@ -17,9 +17,8 @@ import { ERole } from 'src/app/enums/role.enums';
 export class ProfilesListComponent implements OnInit {
 
   event: any = '';
-  // readonly profiles$ = this.componentStore.profiles$.pipe(
-  //   map(profiles => profiles),
-  // );
+
+  isEdit: number | null = null;
 
   @Output() toggleModal: boolean = false;
   constructor(private activatedRoute: ActivatedRoute, private ps: ProfilesService, private store: Store<{profiles: IProfile[]}>) { }
@@ -29,21 +28,31 @@ export class ProfilesListComponent implements OnInit {
 
   isEditing = false;
 
+  setEditItemIndex(index: number): void{
+    this.isEdit = index === this.isEdit ? null : index;
+    console.log(this.isEdit);
+
+  }
+
   openAddProfileModal() {
     console.log("add profile")
   }
 
   getProfileId(id: any){
     console.log('id',id);
+    this.profiles[id];
+    console.log(this.profiles[id])
   }
 
   editProfile($event: Event, id: any) {
+    this.setEditItemIndex(id);
     this.isEditing = true;
     $event.stopPropagation();
     console.log('profile clicked', this.profiles[id])
   }
 
-  saveChanges() {
+  saveChanges(index: number) {
+    this.setEditItemIndex(index);
     this.isEditing = false;
     console.log('saved!')
   }
@@ -60,7 +69,6 @@ export class ProfilesListComponent implements OnInit {
       this.$profiles = data;
       this.profiles = this.$profiles;
       console.log('this.profiles', this.profiles)
-
     });
 
 
