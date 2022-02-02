@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { ComponentStore } from "@ngrx/component-store";
 import { Observable } from "rxjs";
+import { select } from "@ngrx/store";
 import { IProfile } from "../profile/profile.interface";
 
 export interface ProfilesState {
