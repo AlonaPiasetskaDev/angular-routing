@@ -16,6 +16,7 @@ import { ERole } from 'src/app/enums/role.enums';
 })
 export class ProfilesListComponent implements OnInit {
 
+  event: any = '';
   // readonly profiles$ = this.componentStore.profiles$.pipe(
   //   map(profiles => profiles),
   // );
@@ -32,14 +33,18 @@ export class ProfilesListComponent implements OnInit {
     console.log("add profile")
   }
 
-  editProfile($event: Event) {
+  getProfileId(id: any){
+    console.log('id',id);
+  }
+
+  editProfile($event: Event, id: any) {
     this.isEditing = true;
     $event.stopPropagation();
-    console.log('edit profile');
-
+    console.log('profile clicked', this.profiles[id])
   }
 
   saveChanges() {
+    this.isEditing = false;
     console.log('saved!')
   }
 
