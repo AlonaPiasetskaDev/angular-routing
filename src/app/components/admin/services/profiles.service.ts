@@ -15,11 +15,11 @@ export class ProfilesService {
     return this.http.get<IProfile[]>(`http://localhost:4200/${this.url}`);
   }
 
-  getProfile(id: number): Observable<any> {
-    return this.getProfiles().pipe(tap(result => {
-      result.filter(profile => {
-        profile.id === id;
-      })
-    }))
-  }
+  // getProfile(id: string): Observable<any> {
+  //   return this.getProfiles().pipe(tap(result => {
+  //     result.filter(profile => {
+  //       profile.id === id;
+  //     })
+  //   }))
+  // }
 }

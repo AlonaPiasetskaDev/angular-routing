@@ -17,10 +17,10 @@ export class ProfileComponent implements OnInit {
   }
   profile: any;
   ngOnInit(): void {
-    this.ps.getProfile(this.id).subscribe((data: any) => {
-      console.log('Profile component', this.id);
-      this.profile = data[this.id]
-    })
+    // this.ps.getProfile(this.id).subscribe((data: any) => {
+    //   console.log('Profile component', this.id);
+    //   this.profile = data[this.id]
+    // })
   }
 
 
