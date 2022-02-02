@@ -36,7 +36,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
         strictActionImmutability: true
       }
     }),
-    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+    // StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+    StoreDevtoolsModule.instrument({ maxAge: 25 }),
+
   ],
   providers: [],
   bootstrap: [AppComponent]

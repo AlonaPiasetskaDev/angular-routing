@@ -1,7 +1,7 @@
 import { ERole } from '../../../../enums/role.enums';
 export interface IProfile {
-  id: string,
+  id: number,
   name: string,
   username: string,
-  role: ERole
+  role: string
 }
