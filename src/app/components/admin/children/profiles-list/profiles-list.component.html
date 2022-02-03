@@ -11,7 +11,7 @@
         <ng-template [ngIf]="isEdit === profile.id" [ngIfElse]="noEdit" >
           <div class="card-body">
             <input type="text" [(ngModel)]="name" value={{profile.name}} (blur)="updateName()">
-            <input type="text"  [(ngModel)]="username" value={{profile.username}} (blur)="updateName()">
+            <input type="text"  [(ngModel)]="username" value={{profile.username}} (blur)="updateUsername()">
             <p class="card-text">Role: {{profile.role}}</p>
             <button (click)="saveChanges(profile.id)" class="btn btn-light">save</button>
           </div>
@@ -23,7 +23,7 @@
           <p class="card-text">Role: {{profile.role}}</p>
           <a [routerLink]="['/admin/profile', profile.id]" class="card-link">To Profile</a>
           <button (click)="editProfile($event, profile.id)" class="btn btn-light">edit</button>
-
+          <button (click)="deleteProfile($event, profile.id)" class="btn btn-danger delete">delete</button>
         </div>
       </ng-template>
       </div>

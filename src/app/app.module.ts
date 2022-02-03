@@ -17,7 +17,6 @@ import { LoginComponent } from './components/login/login.component';
 
 import { reducers, metaReducers } from './reducers';
 
-import { profileReducer } from './reducers/profile/profile.reducer';
 import { ProfileEffects } from './components/admin/children/profile/profile.effects';
 
 

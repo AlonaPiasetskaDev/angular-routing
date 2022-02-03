@@ -1,4 +1,4 @@
-import { LoadProfiles, UpdateProfile } from './../../../../reducers/profile/profile.actions';
+import { DeleteProfile, LoadProfiles, UpdateProfile } from './../../../../reducers/profile/profile.actions';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { ProfilesService } from '../../services/profiles.service';
@@ -7,12 +7,13 @@ import { Component, OnInit, Output } from '@angular/core';
 import { IProfile } from '../profile/profile.interface';
 import { ProfilesStore } from './profiles.store';
 import { ERole } from 'src/app/enums/role.enums';
+import { LinkerPipe } from 'src/app/shared/linker.pipe';
 
 @Component({
   selector: 'app-profiles-list',
   templateUrl: './profiles-list.component.html',
   styleUrls: ['./profiles-list.component.scss'],
-  providers: [ProfilesStore],
+  providers: [ProfilesStore, LinkerPipe],
 })
 export class ProfilesListComponent implements OnInit {
 
@@ -23,7 +24,7 @@ export class ProfilesListComponent implements OnInit {
   isEdit: number | null = null;
 
   updateName(){
-    console.log(this.name)
+    console.log(this.name);
   }
 
   updateUsername(){
@@ -40,7 +41,7 @@ export class ProfilesListComponent implements OnInit {
 
   setEditItemIndex(index: number): void{
     this.isEdit = index === this.isEdit ? null : index;
-    console.log(this.isEdit);
+    console.log(`this.isEdit: ${this.isEdit}`);
 
   }
 
@@ -56,27 +57,43 @@ export class ProfilesListComponent implements OnInit {
   }
 
   editProfile($event: Event, id: any) {
+    this.updateName();
+    this.updateUsername();
     this.setEditItemIndex(id);
     this.isEditing = true;
     this.name = this.profiles[id].name;
     this.username = this.profiles[id].username;
-    $event.stopPropagation();
-    console.log('profile clicked', this.profiles[id])
+    // $event.stopPropagation();
+    // console.log('profile clicked', this.profiles[id])
 
   }
 
   saveChanges(index: number) {
     this.setEditItemIndex(index);
-    // this.store.dispatch(new UpdateProfile([{
-    //   name:
-    // }]))
+    this.profiles[index].name = this.name;
+    this.profiles[index].username = this.username;
+    this.store.dispatch(new UpdateProfile(this.profiles));
+    console.log('this.store');
+    console.log(this.store)
     this.isEditing = false;
+    console.log('updated');
+    console.log(this.profiles);
     console.log('saved!');
+
+    // this.ps.getProfiles((data: any))
+  }
+
+  deleteProfile($event: Event, id: any){
+    this.store.dispatch(new DeleteProfile(id));
+    console.log(`delete: ${id}`)
+    console.log('this.store');
+    console.log(this.store)
+
   }
 
   ngOnInit(): void {
     this.store.dispatch(new LoadProfiles([{
-      id: '',
+      id: 0,
       name: '',
       username: '',
       role: ERole.user
