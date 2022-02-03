@@ -8,7 +8,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { IProfile } from '../profile/profile.interface';
 import { ProfilesState, ProfilesStore } from './profiles.store';
 import { ERole } from 'src/app/enums/role.enums';
-import { LinkerPipe } from 'src/app/shared/linker.pipe';
+import { LinkerPipe } from 'src/app/shared/pipes/linker.pipe';
 
 @Component({
   selector: 'app-profiles-list',

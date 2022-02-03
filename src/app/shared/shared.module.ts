@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
-import { LinkerPipe } from './linker.pipe';
+import { LinkerPipe } from './pipes/linker.pipe';
 
 @NgModule({
   declarations: [
