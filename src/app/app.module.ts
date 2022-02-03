@@ -17,7 +17,7 @@ import { LoginComponent } from './components/login/login.component';
 
 import { reducers, metaReducers } from './reducers';
 
-import { ProfileEffects } from './components/admin/children/profile/profile.effects';
+import { ProfileEffects } from './reducers/profile/profile.effects';
 
 
 @NgModule({

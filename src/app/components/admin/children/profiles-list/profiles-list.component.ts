@@ -1,3 +1,4 @@
+import { ComponentStore } from '@ngrx/component-store';
 import { DeleteProfile, LoadProfiles, UpdateProfile } from './../../../../reducers/profile/profile.actions';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
@@ -5,7 +6,7 @@ import { ProfilesService } from '../../services/profiles.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, Output } from '@angular/core';
 import { IProfile } from '../profile/profile.interface';
-import { ProfilesStore } from './profiles.store';
+import { ProfilesState, ProfilesStore } from './profiles.store';
 import { ERole } from 'src/app/enums/role.enums';
 import { LinkerPipe } from 'src/app/shared/linker.pipe';
 
@@ -13,7 +14,7 @@ import { LinkerPipe } from 'src/app/shared/linker.pipe';
   selector: 'app-profiles-list',
   templateUrl: './profiles-list.component.html',
   styleUrls: ['./profiles-list.component.scss'],
-  providers: [ProfilesStore, LinkerPipe],
+  providers: [ProfilesStore, LinkerPipe, ComponentStore],
 })
 export class ProfilesListComponent implements OnInit {
 
@@ -33,11 +34,22 @@ export class ProfilesListComponent implements OnInit {
 
   @Output() toggleModal: boolean = false;
   constructor(private activatedRoute: ActivatedRoute, private ps: ProfilesService, private store: Store<{profiles: IProfile[]}>) { }
+  // constructor(private activatedRoute: ActivatedRoute, private ps: ProfilesService, private store: ComponentStore<ProfilesState>) { }
 
   profiles: any = [];
   $profiles: Observable<IProfile[]> = this.store.select(state => state.profiles);
 
   isEditing = false;
+
+  addProfile(profile: IProfile){
+    // this.store.add
+    // this.store.setState((state) => {
+    //   return {
+    //     ...state,
+    //     profile: [...state.profiles, profile]
+    //   }
+    // })
+  }
 
   setEditItemIndex(index: number): void{
     this.isEdit = index === this.isEdit ? null : index;
@@ -63,8 +75,6 @@ export class ProfilesListComponent implements OnInit {
     this.isEditing = true;
     this.name = this.profiles[id].name;
     this.username = this.profiles[id].username;
-    // $event.stopPropagation();
-    // console.log('profile clicked', this.profiles[id])
 
   }
 
@@ -72,36 +82,19 @@ export class ProfilesListComponent implements OnInit {
     this.setEditItemIndex(index);
     this.profiles[index].name = this.name;
     this.profiles[index].username = this.username;
-    this.store.dispatch(new UpdateProfile(this.profiles));
-    console.log('this.store');
-    console.log(this.store)
+    this.store.dispatch(new UpdateProfile(this.profiles[index]));
     this.isEditing = false;
-    console.log('updated');
-    console.log(this.profiles);
-    console.log('saved!');
-
-    // this.ps.getProfiles((data: any))
   }
 
   deleteProfile($event: Event, id: any){
     this.store.dispatch(new DeleteProfile(id));
-    console.log(`delete: ${id}`)
-    console.log('this.store');
-    console.log(this.store)
-
   }
 
   ngOnInit(): void {
-    this.store.dispatch(new LoadProfiles([{
-      id: 0,
-      name: '',
-      username: '',
-      role: ERole.user
-    }]));
-
     this.ps.getProfiles().subscribe((data: any) => {
       this.$profiles = data;
       this.profiles = this.$profiles;
+      this.store.dispatch(new LoadProfiles(this.profiles));
       console.log('this.profiles', this.profiles)
     });
   }
