@@ -18,6 +18,7 @@ import { LoginComponent } from './components/login/login.component';
 import { reducers, metaReducers } from './reducers';
 
 import { ProfileEffects } from './reducers/profile/profile.effects';
+import { OnlyNumberDirective } from './directives/only-number.directive';
 
 
 @NgModule({
@@ -26,9 +27,11 @@ import { ProfileEffects } from './reducers/profile/profile.effects';
     ProfileComponent,
     AdminComponent,
     ProfilesListComponent,
-    LoginComponent
+    LoginComponent,
+    OnlyNumberDirective
   ],
   imports: [
+
     BrowserModule,
     FormsModule,
     AppRoutingModule,

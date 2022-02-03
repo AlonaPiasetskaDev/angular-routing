@@ -34,7 +34,6 @@ export class ProfilesListComponent implements OnInit {
 
   @Output() toggleModal: boolean = false;
   constructor(private activatedRoute: ActivatedRoute, private ps: ProfilesService, private store: Store<{profiles: IProfile[]}>) { }
-  // constructor(private activatedRoute: ActivatedRoute, private ps: ProfilesService, private store: ComponentStore<ProfilesState>) { }
 
   profiles: any = [];
   $profiles: Observable<IProfile[]> = this.store.select(state => state.profiles);
