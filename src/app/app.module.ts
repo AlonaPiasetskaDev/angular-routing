@@ -52,7 +52,6 @@ import { SharedModule } from './shared/shared.module';
     SharedModule
   ],
   providers: [],
-  // exports: [OnlyNumberDirective],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
