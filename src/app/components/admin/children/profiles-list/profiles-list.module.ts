@@ -5,7 +5,7 @@ import { ProfilesListComponent } from './profiles-list.component';
 import { AddProfileComponent } from './add-profile/add-profile.component';
 import { ProfilesStore } from './profiles.store';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { LinkerPipe } from 'src/app/shared/linker.pipe';
+import { LinkerPipe } from 'src/app/shared/pipes/linker.pipe';
 import { CommonModule } from '@angular/common';
 
 

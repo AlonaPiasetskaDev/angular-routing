@@ -1,17 +1,19 @@
 import { Directive, ElementRef, HostListener } from '@angular/core';
 
 @Directive({
-  selector: '[onlyNumber]'
+  selector: '[appOnlyNumber]'
 })
 export class OnlyNumberDirective {
 
-  constructor(private el: ElementRef) { }
+  constructor(private _el: ElementRef) {}
 
-  @HostListener('input', ['$event']) onInputChangeEvent(event: any){
-      const initValue = this.el.nativeElement.value;
-      this.el.nativeElement.value = initValue.replace(/[^0-9]*/g, '');
-      if (initValue !== this.el.nativeElement.value){
-        event.stopPropagation();
-      }
+  @HostListener('input', ['$event']) onInputChange(event: { stopPropagation: () => void; }) {
+    const initValue = this._el.nativeElement.value;
+    this._el.nativeElement.value = initValue.replace(/[^0-9]*/g, '');
+    if ( initValue !== this._el.nativeElement.value) {
+      console.log(event)
+      event.stopPropagation();
+    }
   }
+
 }

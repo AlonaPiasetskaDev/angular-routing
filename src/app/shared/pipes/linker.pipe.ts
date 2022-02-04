@@ -9,10 +9,10 @@ export class LinkerPipe implements PipeTransform {
     if (value) {
       let urlRegex = /(https?:\/\/[^\s]+)/g;
       return value.replace(urlRegex, function(url) {
-        return '<a href="' + url + '">' + url + '</a>';
+        return `<a href='${url}'>${url}</a>` ;
       })
     }
-    console.log('bad value')
+    console.log('bad value');
     return value;
   }
 }

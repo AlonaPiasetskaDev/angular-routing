@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +8,10 @@ import { Component } from '@angular/core';
 export class HomeComponent {
 
   readonly GENERATOR_URL = 'https://dog.ceo/api/breeds/image/random';
-  value = '';
+  @Input() value: string = 'Start typing';
+  text = `smaksjlash ${this.GENERATOR_URL} kjugkggjg`;
 
+  changeInput(e: any){
+    this.value = e;
+  }
 }
