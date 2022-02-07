@@ -8,7 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MetaReducer, StoreModule } from '@ngrx/store';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 
@@ -22,8 +22,9 @@ import { reducers, metaReducers } from './reducers';
 
 import { ProfileEffects } from './reducers/profile/profile.effects';
 import { SharedModule } from './shared/shared.module';
+import { LoginModule } from './components/login/login.module';
 
-
+ 
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +38,7 @@ import { SharedModule } from './shared/shared.module';
 
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
     StoreModule.forRoot(reducers, {
@@ -49,7 +51,8 @@ import { SharedModule } from './shared/shared.module';
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
     EffectsModule.forRoot([ProfileEffects]),
     HomeModule,
-    SharedModule
+    SharedModule,
+    LoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]

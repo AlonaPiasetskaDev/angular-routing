@@ -1,0 +1,25 @@
+.container {
+    margin-top: 5%;
+    width: 500px;
+    min-height: 250px;
+    background-color: #e5e5e5;
+    display: flex;
+    flex-wrap: wrap;
+    align-items:center;
+
+    .form-group {
+        // width: 100%;
+        margin: 10px auto;
+        label {
+            width: 25%;
+        }
+        input {
+            width: 75%;
+        }
+        .alert {
+            width: 75%;
+            margin-left: 25%;
+            height: 55px;
+        }
+    }
+}
