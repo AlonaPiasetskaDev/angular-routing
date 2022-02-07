@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { ProfileDrawerComponent } from './children/profile/profile-drawer/profile-drawer.component';
 
 
 @NgModule({
@@ -11,5 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
     AdminRoutingModule
   ],
   bootstrap: [AdminComponent],
+  declarations: [
+    ProfileDrawerComponent
+  ],
 })
 export class AdminModule { }
