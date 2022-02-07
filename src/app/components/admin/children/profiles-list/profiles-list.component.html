@@ -2,9 +2,38 @@
   <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
       <span class="navbar-brand mb-0 h1">Profile list</span>
-      <button class="btn btn-success" (click)="openAddProfileModal()">+</button>
+      <button #addProfileModal class="btn btn-success" data-target='#addProfileModal' data-toggle="modal" (click)="check()">+</button>
+
     </div>
   </nav>
+  <div class="modal fade" id="addProfileModal" tabindex="-1" role="dialog"  aria-labelledby="addProfileModalLabel" aria-hidden="true" >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add profile</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="nameProfile">Name</label>
+              <input type="text" class="form-control" id="nameProfile" placeholder="input name">
+            </div>
+            <div class="form-group">
+              <label for="usernameProfile">Username</label>
+              <input type="text" class="form-control" id="usernameProfile" placeholder="input username">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success">Save</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <ng-container *ngIf="profiles.length !==0" >
     <div *ngFor="let profile of profiles">
       <div class="card text-white bg-success" id={{profile.id}}>
@@ -29,8 +58,6 @@
       </div>
     </div>
   </ng-container>
-  <ng-container *ngIf="toggleModal">
-    <!-- <app-add-profile></app-add-profile> -->
-  </ng-container>
+
 </div>
 

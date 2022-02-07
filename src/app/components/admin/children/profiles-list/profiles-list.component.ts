@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { ProfilesService } from '../../services/profiles.service';
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, Output, ViewChild } from '@angular/core';
 import { IProfile } from '../profile/profile.interface';
 import { ProfilesState, ProfilesStore } from './profiles.store';
 import { ERole } from 'src/app/enums/role.enums';
@@ -16,7 +16,7 @@ import { LinkerPipe } from 'src/app/shared/pipes/linker.pipe';
   styleUrls: ['./profiles-list.component.scss'],
   providers: [ProfilesStore, LinkerPipe, ComponentStore],
 })
-export class ProfilesListComponent implements OnInit {
+export class ProfilesListComponent implements OnInit, AfterViewInit {
 
   event: any = '';
   name: any;
@@ -35,10 +35,16 @@ export class ProfilesListComponent implements OnInit {
   @Output() toggleModal: boolean = false;
   constructor(private activatedRoute: ActivatedRoute, private ps: ProfilesService, private store: Store<{profiles: IProfile[]}>) { }
 
+  @ViewChild('addProfileModal', {static: true}) addProfileModal: ElementRef;
+
   profiles: any = [];
   $profiles: Observable<IProfile[]> = this.store.select(state => state.profiles);
 
   isEditing = false;
+
+  check() {
+    console.log('click')
+  }
 
   addProfile(profile: IProfile){
     // this.store.add
@@ -97,4 +103,9 @@ export class ProfilesListComponent implements OnInit {
       console.log('this.profiles', this.profiles)
     });
   }
-}
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.addProfileModal.nativeElement.click();
+    }, 1500)
+  }
+} 

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ProfilesListComponent } from './children/profiles-list/profiles-list.component';
 import { ProfileComponent } from './children/profile/profile.component';
+import { AddProfileComponent } from './children/profiles-list/add-profile/add-profile.component';
 
 const routes: Routes = [
   {
@@ -17,7 +18,11 @@ const routes: Routes = [
   {
     path: 'profile/:id',
     component: ProfileComponent
-  }
+  },
+  //  {
+  //    path: 'add-profile',
+  //    component: AddProfileComponent
+  //  }
 ];
 
 @NgModule({
