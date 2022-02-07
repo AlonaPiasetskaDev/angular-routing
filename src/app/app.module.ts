@@ -23,6 +23,7 @@ import { reducers, metaReducers } from './reducers';
 import { ProfileEffects } from './reducers/profile/profile.effects';
 import { SharedModule } from './shared/shared.module';
 import { LoginModule } from './components/login/login.module';
+import { SimpleModalModule } from 'ngx-simple-modal';
 
  
 @NgModule({
@@ -52,7 +53,8 @@ import { LoginModule } from './components/login/login.module';
     EffectsModule.forRoot([ProfileEffects]),
     HomeModule,
     SharedModule,
-    LoginModule
+    LoginModule,
+    SimpleModalModule.forRoot({container: "modal-container"})
   ],
   providers: [],
   bootstrap: [AppComponent]

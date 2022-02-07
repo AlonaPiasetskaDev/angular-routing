@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { SimpleModalComponent, SimpleModalService } from 'ngx-simple-modal';
 import { IState } from 'src/app/reducers';
 
 @Component({
@@ -7,13 +8,17 @@ import { IState } from 'src/app/reducers';
   templateUrl: './add-profile.component.html',
   styleUrls: ['./add-profile.component.scss']
 })
-export class AddProfileComponent implements OnInit {
+export class AddProfileComponent extends SimpleModalComponent<null,null> implements OnDestroy {
 
-  constructor(private store: Store<IState>) { }
+  constructor(private simpleModalService: SimpleModalService, private store: Store<IState>) {
+    super();
+   }
 
-  ngOnInit(): void {
-  }
+   confirm(){
+     console.log('confirm!')
+   }
 
-  @Input() toggle: boolean = false;
-
+   ngOnDestroy(): void {
+       console.log('destroyed!!!')
+   }
 }

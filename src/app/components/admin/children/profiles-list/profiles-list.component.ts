@@ -9,6 +9,8 @@ import { IProfile } from '../profile/profile.interface';
 import { ProfilesState, ProfilesStore } from './profiles.store';
 import { ERole } from 'src/app/enums/role.enums';
 import { LinkerPipe } from 'src/app/shared/pipes/linker.pipe';
+import { SimpleModalService } from 'ngx-simple-modal';
+import { AddProfileComponent } from './add-profile/add-profile.component';
 
 @Component({
   selector: 'app-profiles-list',
@@ -16,7 +18,7 @@ import { LinkerPipe } from 'src/app/shared/pipes/linker.pipe';
   styleUrls: ['./profiles-list.component.scss'],
   providers: [ProfilesStore, LinkerPipe, ComponentStore],
 })
-export class ProfilesListComponent implements OnInit, AfterViewInit {
+export class ProfilesListComponent implements OnInit {
 
   event: any = '';
   name: any;
@@ -33,17 +35,27 @@ export class ProfilesListComponent implements OnInit, AfterViewInit {
   }
 
   @Output() toggleModal: boolean = false;
-  constructor(private activatedRoute: ActivatedRoute, private ps: ProfilesService, private store: Store<{profiles: IProfile[]}>) { }
+  constructor(private activatedRoute: ActivatedRoute, private ps: ProfilesService, private store: Store<{profiles: IProfile[]}>, private simpleModalService: SimpleModalService) { }
 
-  @ViewChild('addProfileModal', {static: true}) addProfileModal: ElementRef;
+  // @ViewChild('addProfileModal', {static: true}) addProfileModal: ElementRef;
 
   profiles: any = [];
   $profiles: Observable<IProfile[]> = this.store.select(state => state.profiles);
+  public modal = document.getElementById('modal_1');
 
   isEditing = false;
 
-  check() {
-    console.log('click')
+  openModal() {
+    console.log('click');
+    // let modal = document.getElementById('modal_1');
+    // this.modal?.classList.remove('hiden');
+    // this.modal?.classList.add('show');
+    this.simpleModalService.addModal(AddProfileComponent);
+
+  }
+  closeModal(){
+    this.modal?.classList.remove('show');
+    this.modal?.classList.add('hiden')
   }
 
   addProfile(profile: IProfile){
@@ -103,9 +115,9 @@ export class ProfilesListComponent implements OnInit, AfterViewInit {
       console.log('this.profiles', this.profiles)
     });
   }
-  ngAfterViewInit() {
-    setTimeout(() => {
-      this.addProfileModal.nativeElement.click();
-    }, 1500)
-  }
+  // ngAfterViewInit() {
+  //   setTimeout(() => {
+  //     this.addProfileModal.nativeElement.click();
+  //   }, 1500)
+  // }
 } 
