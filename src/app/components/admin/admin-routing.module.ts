@@ -18,11 +18,7 @@ const routes: Routes = [
   {
     path: 'profile/:id',
     component: ProfileComponent
-  },
-  //  {
-  //    path: 'add-profile',
-  //    component: AddProfileComponent
-  //  }
+  }
 ];
 
 @NgModule({
